@@ -10,10 +10,24 @@ class SaladHomePage extends StatefulWidget {
 }
 
 class _SaladHomePageState extends State<SaladHomePage> {
-
   late IconData icMarkGridViewFill;
   late IconData icMarkGridViewNotFill;
   late Color colorBgIcon;
+
+  Future<void> _onRefresh() async {
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() {
+      if (colorBgIcon == Colors.red) {
+        icMarkGridViewFill = Icons.search;
+        icMarkGridViewNotFill = Icons.search;
+        colorBgIcon = Colors.yellow;
+      } else {
+        icMarkGridViewFill = Icons.bookmark;
+        icMarkGridViewNotFill = Icons.bookmark_border_rounded;
+        colorBgIcon = Colors.red;
+      }
+    });
+  }
 
   @override
   void initState() {
@@ -29,7 +43,6 @@ class _SaladHomePageState extends State<SaladHomePage> {
     double deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(
@@ -45,7 +58,9 @@ class _SaladHomePageState extends State<SaladHomePage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+
+            },
             icon: const Icon(
               Icons.search,
               color: Colors.black,
@@ -67,9 +82,8 @@ class _SaladHomePageState extends State<SaladHomePage> {
 
   Widget _screenBody(double deviceWidth, double deviceHeight) {
     return SingleChildScrollView(
-      // physics: const NeverScrollableScrollPhysics(),
       child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -157,7 +171,7 @@ class _SaladHomePageState extends State<SaladHomePage> {
         itemBuilder: (context, index) {
           return ItemSaladGridView(
             index: index,
-            imageSalad: 'assets/image_c3/salad_portrait.webp',
+            imageSalad: 'assets/image_c3/salad_portrait.jpeg',
             iconFill: icMarkGridViewFill,
             iconNotFill: icMarkGridViewNotFill,
             colorBgIcon: colorBgIcon,
@@ -167,18 +181,5 @@ class _SaladHomePageState extends State<SaladHomePage> {
     );
   }
 
-  Future<void> _onRefresh() async {
-    await Future.delayed(const Duration(seconds: 2));
-    setState(() {
-      if (colorBgIcon == Colors.red) {
-        icMarkGridViewFill = Icons.search;
-        icMarkGridViewNotFill = Icons.search;
-        colorBgIcon = Colors.yellow;
-      } else {
-        icMarkGridViewFill = Icons.bookmark;
-        icMarkGridViewNotFill = Icons.bookmark_border_rounded;
-        colorBgIcon = Colors.red;
-      }
-    });
-  }
+
 }
