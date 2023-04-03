@@ -43,33 +43,6 @@ class _SaladHomePageState extends State<SaladHomePage> {
     double deviceWidth = MediaQuery.of(context).size.width;
     double deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.arrow_back_rounded,
-            color: AppColor.colorDarkText,
-          ),
-        ),
-        title: const Text(
-          "Salad",
-          style: TextStyle(
-            color: AppColor.colorDarkText,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-
-            },
-            icon: const Icon(
-              Icons.search,
-              color: AppColor.colorDarkText,
-            ),
-          ),
-        ],
-        elevation: 0,
-      ),
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: () async {

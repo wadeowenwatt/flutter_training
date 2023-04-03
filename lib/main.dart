@@ -6,8 +6,16 @@ void main() {
   runApp(const FlutterTrainingSeries());
 }
 
-class FlutterTrainingSeries extends StatelessWidget {
+class FlutterTrainingSeries extends StatefulWidget {
   const FlutterTrainingSeries({Key? key}) : super(key: key);
+
+  @override
+  State<FlutterTrainingSeries> createState() => _FlutterTrainingSeriesState();
+}
+
+class _FlutterTrainingSeriesState extends State<FlutterTrainingSeries> {
+
+  bool isDark = false;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +27,43 @@ class FlutterTrainingSeries extends StatelessWidget {
             ),
           ),
           darkTheme: ThemeData.dark(),
-          themeMode: ThemeMode.dark,
-          home: const SaladHomePage(),
+          themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
+          home: Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.arrow_back_rounded,
+                  color: AppColor.colorDarkText,
+                ),
+              ),
+              title: const Text(
+                "Salad",
+                style: TextStyle(
+                  color: AppColor.colorDarkText,
+                ),
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    changeTheme();
+                  },
+                  icon: const Icon(
+                    Icons.search,
+                    color: AppColor.colorDarkText,
+                  ),
+                ),
+              ],
+              elevation: 0,
+            ),
+            body: const SaladHomePage(),
+          ),
         );
+  }
+
+  void changeTheme() {
+    setState(() {
+      isDark ? isDark = false : isDark = true;
+    });
   }
 }

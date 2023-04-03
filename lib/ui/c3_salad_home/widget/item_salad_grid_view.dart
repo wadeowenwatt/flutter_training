@@ -22,12 +22,13 @@ class ItemSaladGridView extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-              // color: Colors.blueAccent,
-              borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                image: AssetImage(imageSalad),
-                fit: BoxFit.cover,
-              )),
+            // color: Colors.blueAccent,
+            borderRadius: BorderRadius.circular(20),
+            image: DecorationImage(
+              image: AssetImage(imageSalad),
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
         Positioned(
           right: 10,
