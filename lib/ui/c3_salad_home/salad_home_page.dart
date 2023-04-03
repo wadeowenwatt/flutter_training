@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training/config/app_color.dart';
 import 'package:flutter_training/ui/c3_salad_home/widget/item_salad_grid_view.dart';
 import 'package:flutter_training/ui/c3_salad_home/widget/item_salad_horizontal.dart';
 
@@ -47,13 +48,13 @@ class _SaladHomePageState extends State<SaladHomePage> {
           onPressed: () {},
           icon: const Icon(
             Icons.arrow_back_rounded,
-            color: Colors.black,
+            color: AppColor.colorDarkText,
           ),
         ),
         title: const Text(
           "Salad",
           style: TextStyle(
-            color: Colors.black,
+            color: AppColor.colorDarkText,
           ),
         ),
         actions: [
@@ -63,7 +64,7 @@ class _SaladHomePageState extends State<SaladHomePage> {
             },
             icon: const Icon(
               Icons.search,
-              color: Colors.black,
+              color: AppColor.colorDarkText,
             ),
           ),
         ],

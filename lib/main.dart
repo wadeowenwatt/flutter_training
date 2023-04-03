@@ -19,7 +19,7 @@ class FlutterTrainingSeries extends StatelessWidget {
             ),
           ),
           darkTheme: ThemeData.dark(),
-          themeMode: ThemeMode.light,
+          themeMode: ThemeMode.dark,
           home: const SaladHomePage(),
         );
   }

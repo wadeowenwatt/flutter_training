@@ -22,7 +22,7 @@ class ItemSaladGridView extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-              color: Colors.blueAccent,
+              // color: Colors.blueAccent,
               borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
                 image: AssetImage(imageSalad),

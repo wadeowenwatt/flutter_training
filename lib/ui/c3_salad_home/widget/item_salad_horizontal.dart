@@ -21,7 +21,7 @@ class ItemSaladHorizontal extends StatelessWidget {
           width: deviceWidth - 40,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.green,
+            // color: Colors.green,
             image: DecorationImage(
               image: AssetImage(imageFood),
               fit: BoxFit.fill,
