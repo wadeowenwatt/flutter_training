@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_training/ui/c4_assets_practice/c4_video_page.dart';
@@ -10,6 +9,10 @@ class C4HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Hero(
+          tag: "testHero",
+          child: Text("C4 Assignment"),
+        ),
         backgroundColor: Colors.blueAccent,
         shadowColor: Colors.black,
       ),

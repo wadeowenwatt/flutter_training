@@ -9,41 +9,48 @@ class MainHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SizedBox(
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SaladHomePage(),
-                  ),
-                ),
-                child: const Text("C3 Assignment"),
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SaladHomePage(),
               ),
-              const SizedBox(height: 20,),
-              ElevatedButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const C4HomePage(),
-                  ),
-                ),
-                child: const Text("C4 Assignment"),
-              ),
-              const SizedBox(height: 20,),
-              ElevatedButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SaladHomePage(),
-                  ),
-                ),
-                child: const Text("C5 Assignment"),
-              ),
-            ],
+            ),
+            child: const Text("C3 Assignment"),
           ),
-        ));
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const C4HomePage(),
+              ),
+            ),
+            child: const Hero(
+              tag: "testHero",
+              child: Text("C4 Assignment"),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SaladHomePage(),
+              ),
+            ),
+            child: const Text("C5 Assignment"),
+          ),
+        ],
+      ),
+    ));
   }
 }
