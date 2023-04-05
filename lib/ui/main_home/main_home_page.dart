@@ -1,0 +1,49 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_training/ui/c3_salad_home/salad_home_page.dart';
+import 'package:flutter_training/ui/c4_assets_practice/c4_home_page.dart';
+
+class MainHomePage extends StatelessWidget {
+  const MainHomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SizedBox(
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SaladHomePage(),
+                  ),
+                ),
+                child: const Text("C3 Assignment"),
+              ),
+              const SizedBox(height: 20,),
+              ElevatedButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const C4HomePage(),
+                  ),
+                ),
+                child: const Text("C4 Assignment"),
+              ),
+              const SizedBox(height: 20,),
+              ElevatedButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SaladHomePage(),
+                  ),
+                ),
+                child: const Text("C5 Assignment"),
+              ),
+            ],
+          ),
+        ));
+  }
+}
