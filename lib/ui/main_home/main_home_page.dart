@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_training/ui/c3_salad_home/salad_home_page.dart';
 import 'package:flutter_training/ui/c4_assets_practice/c4_home_page.dart';
+import 'package:flutter_training/ui/c5_login_logic/screen_1.dart';
+import 'package:flutter_training/ui/movie_app/movie_home/movie_home_page.dart';
 
 class MainHomePage extends StatelessWidget {
   const MainHomePage({Key? key}) : super(key: key);
@@ -44,7 +46,7 @@ class MainHomePage extends StatelessWidget {
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const SaladHomePage(),
+                builder: (context) => const Screen1(),
               ),
             ),
             child: const Text("C5 Assignment"),
