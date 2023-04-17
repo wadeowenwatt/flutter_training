@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_training/config/app_color.dart';
-import 'package:flutter_training/ui/c3_salad_home/salad_home_page.dart';
-import 'package:flutter_training/ui/c4_assets_practice/c4_home_page.dart';
-import 'package:flutter_training/ui/c4_assets_practice/c4_video_page.dart';
-import 'package:flutter_training/ui/c4_assets_practice/c4_youtube_page.dart';
+import 'package:flutter_training/ui/c5_login_logic/screen_1.dart';
+import 'package:flutter_training/ui/c5_login_logic/screen_2.dart';
+import 'package:flutter_training/ui/c5_login_logic/screen_3.dart';
+import 'package:flutter_training/ui/c5_login_logic/screen_4.dart';
 import 'package:flutter_training/ui/main_home/main_home_page.dart';
 
 void main() {
@@ -18,9 +17,9 @@ class FlutterTrainingSeries extends StatefulWidget {
 }
 
 class _FlutterTrainingSeriesState extends State<FlutterTrainingSeries> {
-  /*
-  Comment logic change theme of C3 assignment
-   */
+
+  /// Comment logic change theme of C3 assignment
+
   // bool isDark = false;
   //
   // @override
@@ -82,8 +81,14 @@ class _FlutterTrainingSeriesState extends State<FlutterTrainingSeries> {
           color: Colors.white,
         ),
       ),
-      home: const MainHomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const MainHomePage(),
+        '/screen1': (context) => const Screen1(),
+        '/screen2': (context) => const Screen2(),
+        '/screen3': (context) => const Screen3(),
+        '/screen4': (context) => Screen4(),
+      },
     );
   }
-
 }

@@ -43,11 +43,9 @@ class MainHomePage extends StatelessWidget {
             height: 20,
           ),
           ElevatedButton(
-            onPressed: () => Navigator.push(
+            onPressed: () => Navigator.pushNamed(
               context,
-              MaterialPageRoute(
-                builder: (context) => const Screen1(),
-              ),
+              "/screen1",
             ),
             child: const Text("C5 Assignment"),
           ),

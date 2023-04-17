@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training/ui/c5_login_logic/screen_1.dart';
+import 'package:flutter_training/ui/c5_login_logic/screen_2.dart';
 import 'package:flutter_training/ui/c5_login_logic/screen_3.dart';
+import 'package:flutter_training/ui/c5_login_logic/validate_controller.dart';
+import 'package:provider/provider.dart';
 
 class Screen4 extends StatelessWidget {
-  const Screen4({Key? key}) : super(key: key);
+  Screen4({Key? key}) : super(key: key);
+
+  TextEditingController controller1 = ValidateController.textEditingController1;
+  TextEditingController controller2 = ValidateController.textEditingController2;
+  TextEditingController controller3 = ValidateController.textEditingController3;
 
   @override
   Widget build(BuildContext context) {
@@ -42,16 +50,14 @@ class Screen4 extends StatelessWidget {
               width: 200,
               height: 85,
             ),
-            const SizedBox(height: 135,),
+            const SizedBox(
+              height: 100,
+            ),
+            Text(controller1.text, style: const TextStyle(color: Colors.white),),
+            Text(controller2.text, style: const TextStyle(color: Colors.white),),
+            Text(controller3.text, style: const TextStyle(color: Colors.white),),
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Screen3(),
-                  ),
-                );
-              },
+              onPressed: () => _validateData(context),
               style: ButtonStyle(
                 backgroundColor:
                     MaterialStateProperty.all<Color>(Colors.transparent),
@@ -80,5 +86,20 @@ class Screen4 extends StatelessWidget {
         ),
       );
     });
+  }
+
+  void _validateData(BuildContext context) {
+    if (controller1.text == "") {
+      Navigator.popUntil(context, (route) => route.settings.name == "/screen1");
+    } else if (controller2.text == "") {
+      Navigator.popUntil(context, (route) => route.settings.name == "/screen2");
+    } else if (controller3.text == "") {
+      Navigator.popUntil(context, (route) => route.settings.name == "/screen3");
+    } else {
+      const snackBar = SnackBar(content: Text("Login Complete!"), );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      ValidateController.clearTextController();
+      Navigator.popUntil(context, (route) => route.settings.name == "/");
+    }
   }
 }

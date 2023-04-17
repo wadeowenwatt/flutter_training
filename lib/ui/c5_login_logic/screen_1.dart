@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_training/ui/c5_login_logic/screen_2.dart';
+import 'package:flutter_training/ui/c5_login_logic/validate_controller.dart';
+import 'package:provider/provider.dart';
 
-class Screen1 extends StatelessWidget {
+class Screen1 extends StatefulWidget {
   const Screen1({Key? key}) : super(key: key);
 
+  @override
+  State<Screen1> createState() => _Screen1State();
+}
+
+class _Screen1State extends State<Screen1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +39,6 @@ class Screen1 extends StatelessWidget {
   }
 
   Widget _buildCenterBody() {
-    TextEditingController _controller = TextEditingController();
-
     return Builder(builder: (context) {
       return Center(
         child: Column(
@@ -47,7 +52,7 @@ class Screen1 extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 35, right: 35, top: 50),
               child: TextField(
-                controller: _controller,
+                controller: ValidateController.textEditingController1,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(0.0),
@@ -56,9 +61,9 @@ class Screen1 extends StatelessWidget {
                   fillColor: Colors.white,
                   filled: true,
                 ),
-                onChanged: (text) {
-                  _controller.text = text;
-                },
+                // onChanged: (text) {
+                //   controller.text = text;
+                // },
               ),
             ),
             const Padding(
@@ -77,14 +82,9 @@ class Screen1 extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const Screen2(),
-                    settings: RouteSettings(
-                      arguments: _controller.text,
-                    ),
-                  ),
+                  "/screen2",
                 );
               },
               style: ButtonStyle(
