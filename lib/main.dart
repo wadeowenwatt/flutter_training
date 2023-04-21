@@ -4,6 +4,7 @@ import 'package:flutter_training/ui/c5_login_logic/screen_2.dart';
 import 'package:flutter_training/ui/c5_login_logic/screen_3.dart';
 import 'package:flutter_training/ui/c5_login_logic/screen_4.dart';
 import 'package:flutter_training/ui/main_home/main_home_page.dart';
+import 'package:flutter_training/ui/movie_app/movie_home/movie_home_page.dart';
 
 void main() {
   runApp(const FlutterTrainingSeries());
@@ -73,6 +74,11 @@ class _FlutterTrainingSeriesState extends State<FlutterTrainingSeries> {
   // }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
@@ -88,6 +94,7 @@ class _FlutterTrainingSeriesState extends State<FlutterTrainingSeries> {
         '/screen2': (context) => const Screen2(),
         '/screen3': (context) => const Screen3(),
         '/screen4': (context) => Screen4(),
+        '/movieApp': (context) => const MovieHomePage(),
       },
     );
   }

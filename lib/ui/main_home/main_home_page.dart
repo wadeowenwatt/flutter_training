@@ -49,6 +49,16 @@ class MainHomePage extends StatelessWidget {
             ),
             child: const Text("C5 Assignment"),
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pushNamed(
+              context,
+              "/movieApp",
+            ),
+            child: const Text("Movie App"),
+          ),
         ],
       ),
     ));

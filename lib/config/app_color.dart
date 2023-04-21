@@ -14,6 +14,17 @@ class AppColor {
   static const Color searchWidgetLinearColorLeft = Color(0xFF6B66A6);
   static const Color searchWidgetLinearColorRight = Color(0xFF75D1DD);
 
+  static const LinearGradient mainLinearGradient = LinearGradient(
+    colors: [
+      AppColor.mainLinearColorLeft,
+      AppColor.mainLinearColorRight,
+    ],
+  );
 
-
+  static LinearGradient searchBoxBgLinearGradient = LinearGradient(
+    colors: [
+      AppColor.searchWidgetLinearColorLeft.withOpacity(0.3),
+      AppColor.searchWidgetLinearColorRight.withOpacity(0.3),
+    ],
+  );
 }
