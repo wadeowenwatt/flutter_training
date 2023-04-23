@@ -80,6 +80,7 @@ flutter:
     - assets/image_c4/Image/Terms/
     - assets/image_c4/Svg/
     - assets/image_c5/
+    - assets/image_movie_app/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -21,6 +21,31 @@ class AppColor {
     ],
   );
 
+  static const LinearGradient indicatorLinearGradientActive = LinearGradient(
+    begin: AlignmentDirectional.topStart,
+    end: AlignmentDirectional.bottomEnd,
+    colors: [
+      Color(0xFF64ABDB),
+      Color(0xFF826EC8),
+    ],
+  );
+
+  static LinearGradient indicatorLinearGradientNonActive = LinearGradient(
+    begin: AlignmentDirectional.topStart,
+    end: AlignmentDirectional.bottomEnd,
+    colors: [
+      const Color(0xFF64ABDB).withOpacity(0.3),
+      const Color(0xFF826EC8).withOpacity(0.3),
+    ],
+  );
+
+  static LinearGradient buttonLinearGradient = LinearGradient(
+    colors: [
+      const Color(0xFFA6A1E0).withOpacity(0.3),
+      const Color(0xFFA1F3FE).withOpacity(0.3),
+    ],
+  );
+
   static LinearGradient searchBoxBgLinearGradient = LinearGradient(
     colors: [
       AppColor.searchWidgetLinearColorLeft.withOpacity(0.3),

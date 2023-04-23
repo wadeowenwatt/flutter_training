@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_training/config/app_color.dart';
-import 'package:flutter_training/ui/movie_app/movie_home/widget/ScaleAndFadeTransformer.dart';
+import 'package:flutter_training/ui/movie_app/movie_home/widget/custom_button.dart';
+import 'package:flutter_training/ui/movie_app/movie_home/widget/indicator_widget.dart';
+import 'package:flutter_training/ui/movie_app/movie_home/widget/indicator_widget.dart';
+import 'package:flutter_training/ui/movie_app/movie_home/widget/item_most_popular.dart';
+import 'package:flutter_training/ui/movie_app/movie_home/widget/scale_and_fade_transformer.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
 
 class MovieHomePage extends StatelessWidget {
@@ -21,6 +25,7 @@ class _MovieHomePage extends StatefulWidget {
 
 class _MovieHomePageState extends State<_MovieHomePage> {
   late TransformerPageController pageController;
+  late int selectedIndexMP;
 
   @override
   void initState() {
@@ -31,6 +36,7 @@ class _MovieHomePageState extends State<_MovieHomePage> {
       itemCount: 3,
       initialPage: 1,
     );
+    selectedIndexMP = 1;
   }
 
   @override
@@ -57,6 +63,8 @@ class _MovieHomePageState extends State<_MovieHomePage> {
               _buildRowAppBar(),
               _buildSearchBarWidget(),
               _buildMostPopular(mediaQuery),
+              _buildRowButton(),
+              // _buildUpComing(mediaQuery),
             ],
           ),
         ),
@@ -162,53 +170,108 @@ class _MovieHomePageState extends State<_MovieHomePage> {
           child: TransformerPageView(
             pageController: pageController,
             itemCount: pageController.itemCount,
+            index: selectedIndexMP,
             transformer: ScaleAndFadeTransformer(
               scale: 0.8,
-              fade: 0.3,
+              fade: 0.5,
             ),
+            onPageChanged: (index) {
+              setState(() {
+                selectedIndexMP = index;
+              });
+            },
             itemBuilder: (context, index) {
-              return Stack(
-                fit: StackFit.expand,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: Image.asset(
-                      "assets/image_c3/salad_landscape.jpg",
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  const Positioned(
-                    left: 28,
-                    bottom: 10,
-                    child: Text(
-                      "Rau Cai Xoong",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    right: 28,
-                    bottom: 10,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
-                      decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Text(
-                        "IMDb 8.5",
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 8),
-                      ),
-                    ),
-                  ),
-                ],
-              );
+              return const ItemMostPopular();
             },
           ),
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: _buildListIndicator(pageController),
+        ),
+      ],
+    );
+  }
+
+  List<Widget> _buildListIndicator(TransformerPageController pageController) {
+    List<Widget> listIndicator = [];
+    for (int i = 0; i < pageController.itemCount; i++) {
+      if (i == selectedIndexMP) {
+        listIndicator.add(
+          const IndicatorWidget(isActive: true),
+        );
+      } else {
+        listIndicator.add(
+          const IndicatorWidget(isActive: false),
+        );
+      }
+    }
+    return listIndicator;
+  }
+
+  Widget _buildRowButton() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 50, right: 50, top: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          CustomButton(assetPath: "assets/image_movie_app/ic_genres.png", title: "Genres",),
+          CustomButton(assetPath: "assets/image_movie_app/ic_tv_series.png", title: "TV Series",),
+          CustomButton(assetPath: "assets/image_movie_app/ic_movies.png", title: "Movies",),
+          CustomButton(assetPath: "assets/image_movie_app/ic_in_theater.png", title: "In Theater",),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildUpComing(MediaQueryData mediaQuery) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(left: 50, right: 50, top: 15, bottom: 15),
+          child: Text(
+            "Upcoming releases",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: (mediaQuery.size.width - 100) * 141 / 328,
+          width: mediaQuery.size.width,
+          child: TransformerPageView(
+            pageController: pageController,
+            itemCount: pageController.itemCount,
+            index: selectedIndexMP,
+            transformer: ScaleAndFadeTransformer(
+              scale: 0.8,
+              fade: 0.5,
+            ),
+            onPageChanged: (index) {
+              setState(() {
+                selectedIndexMP = index;
+              });
+            },
+            itemBuilder: (context, index) {
+              return const ItemMostPopular();
+            },
+          ),
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: _buildListIndicator(pageController),
         ),
       ],
     );
   }
 }
+
+
