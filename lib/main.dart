@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training/route/route_screen.dart';
 import 'package:flutter_training/ui/c5_login_logic/screen_1.dart';
 import 'package:flutter_training/ui/c5_login_logic/screen_2.dart';
 import 'package:flutter_training/ui/c5_login_logic/screen_3.dart';
 import 'package:flutter_training/ui/c5_login_logic/screen_4.dart';
 import 'package:flutter_training/ui/main_home/main_home_page.dart';
+import 'package:flutter_training/ui/movie_app/movie_detail/movie_detail_page.dart';
 import 'package:flutter_training/ui/movie_app/movie_home/movie_home_page.dart';
 
 void main() {
@@ -88,14 +90,7 @@ class _FlutterTrainingSeriesState extends State<FlutterTrainingSeries> {
         ),
       ),
       initialRoute: '/',
-      routes: {
-        '/': (context) => const MainHomePage(),
-        '/screen1': (context) => const Screen1(),
-        '/screen2': (context) => const Screen2(),
-        '/screen3': (context) => const Screen3(),
-        '/screen4': (context) => Screen4(),
-        '/movieApp': (context) => const MovieHomePage(),
-      },
+      routes: RouteScreen.routes,
     );
   }
 }

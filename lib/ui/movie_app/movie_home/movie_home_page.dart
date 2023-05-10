@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_training/config/app_color.dart';
+import 'package:flutter_training/route/route_screen.dart';
 import 'package:flutter_training/ui/movie_app/movie_home/widget/custom_button.dart';
 import 'package:flutter_training/ui/movie_app/movie_home/widget/indicator_widget.dart';
-import 'package:flutter_training/ui/movie_app/movie_home/widget/indicator_widget.dart';
 import 'package:flutter_training/ui/movie_app/movie_home/widget/item_most_popular.dart';
+import 'package:flutter_training/ui/movie_app/movie_home/widget/item_upcoming_releases.dart';
 import 'package:flutter_training/ui/movie_app/movie_home/widget/scale_and_fade_transformer.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
 
@@ -24,19 +25,25 @@ class _MovieHomePage extends StatefulWidget {
 }
 
 class _MovieHomePageState extends State<_MovieHomePage> {
-  late TransformerPageController pageController;
+  late TransformerPageController pageControllerListMP;
+  late TransformerPageController pageControllerListUC;
   late int selectedIndexMP;
+  late int selectedIndexUC;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    pageController = TransformerPageController(
+    pageControllerListMP = TransformerPageController(
       viewportFraction: 0.75,
       itemCount: 3,
       initialPage: 1,
     );
-    selectedIndexMP = 1;
+    pageControllerListUC = TransformerPageController(
+      viewportFraction: 0.4,
+      itemCount: 3,
+      initialPage: 1,
+    );
+    selectedIndexMP = selectedIndexUC = 1;
   }
 
   @override
@@ -56,7 +63,6 @@ class _MovieHomePageState extends State<_MovieHomePage> {
         child: SafeArea(
           child: Column(
             children: [
-              ///
               // SizedBox(
               //   height: mediaQuery.padding.top,
               // ),
@@ -64,7 +70,7 @@ class _MovieHomePageState extends State<_MovieHomePage> {
               _buildSearchBarWidget(),
               _buildMostPopular(mediaQuery),
               _buildRowButton(),
-              // _buildUpComing(mediaQuery),
+              _buildUpComing(mediaQuery),
             ],
           ),
         ),
@@ -165,11 +171,11 @@ class _MovieHomePageState extends State<_MovieHomePage> {
           ),
         ),
         SizedBox(
-          height: (mediaQuery.size.width - 100) * 141 / 328,
+          height: (mediaQuery.size.width - 100) * 141 / 328 + 15,
           width: mediaQuery.size.width,
           child: TransformerPageView(
-            pageController: pageController,
-            itemCount: pageController.itemCount,
+            pageController: pageControllerListMP,
+            itemCount: pageControllerListMP.itemCount,
             index: selectedIndexMP,
             transformer: ScaleAndFadeTransformer(
               scale: 0.8,
@@ -181,25 +187,30 @@ class _MovieHomePageState extends State<_MovieHomePage> {
               });
             },
             itemBuilder: (context, index) {
-              return const ItemMostPopular();
+              return InkWell(
+                  onTap: () {
+                    if (index == selectedIndexMP) {
+                      print("✊");
+                      Navigator.pushNamed(context, RouteScreen.movieDetail);
+                    };
+                  },
+                  child: const ItemMostPopular());
             },
           ),
         ),
-        const SizedBox(
-          height: 15,
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: _buildListIndicator(pageController),
+          children: _buildListIndicator(pageControllerListMP, selectedIndexMP),
         ),
       ],
     );
   }
 
-  List<Widget> _buildListIndicator(TransformerPageController pageController) {
+  List<Widget> _buildListIndicator(
+      TransformerPageController pageController, int selectIndex) {
     List<Widget> listIndicator = [];
     for (int i = 0; i < pageController.itemCount; i++) {
-      if (i == selectedIndexMP) {
+      if (i == selectIndex) {
         listIndicator.add(
           const IndicatorWidget(isActive: true),
         );
@@ -218,10 +229,22 @@ class _MovieHomePageState extends State<_MovieHomePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
-          CustomButton(assetPath: "assets/image_movie_app/ic_genres.png", title: "Genres",),
-          CustomButton(assetPath: "assets/image_movie_app/ic_tv_series.png", title: "TV Series",),
-          CustomButton(assetPath: "assets/image_movie_app/ic_movies.png", title: "Movies",),
-          CustomButton(assetPath: "assets/image_movie_app/ic_in_theater.png", title: "In Theater",),
+          CustomButton(
+            assetPath: "assets/image_movie_app/ic_genres.png",
+            title: "Genres",
+          ),
+          CustomButton(
+            assetPath: "assets/image_movie_app/ic_tv_series.png",
+            title: "TV Series",
+          ),
+          CustomButton(
+            assetPath: "assets/image_movie_app/ic_movies.png",
+            title: "Movies",
+          ),
+          CustomButton(
+            assetPath: "assets/image_movie_app/ic_in_theater.png",
+            title: "In Theater",
+          ),
         ],
       ),
     );
@@ -242,23 +265,34 @@ class _MovieHomePageState extends State<_MovieHomePage> {
           ),
         ),
         SizedBox(
-          height: (mediaQuery.size.width - 100) * 141 / 328,
+          height: mediaQuery.size.height * 2 / 7,
           width: mediaQuery.size.width,
           child: TransformerPageView(
-            pageController: pageController,
-            itemCount: pageController.itemCount,
-            index: selectedIndexMP,
+            pageController: pageControllerListUC,
+            itemCount: pageControllerListUC.itemCount,
+            index: selectedIndexUC,
             transformer: ScaleAndFadeTransformer(
-              scale: 0.8,
-              fade: 0.5,
+              scale: 0.95,
+              fade: 0.4,
             ),
             onPageChanged: (index) {
               setState(() {
-                selectedIndexMP = index;
+                selectedIndexUC = index;
               });
             },
             itemBuilder: (context, index) {
-              return const ItemMostPopular();
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: InkWell(
+                  onTap: () {
+                    if (index == selectedIndexUC) {
+                      print("👏");
+                      Navigator.pushNamed(context, RouteScreen.movieDetail);
+                    };
+                  },
+                  child: const ItemUpcomingReleases(),
+                ),
+              );
             },
           ),
         ),
@@ -267,11 +301,9 @@ class _MovieHomePageState extends State<_MovieHomePage> {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: _buildListIndicator(pageController),
+          children: _buildListIndicator(pageControllerListUC, selectedIndexUC),
         ),
       ],
     );
   }
 }
-
-

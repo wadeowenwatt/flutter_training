@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training/route/route_screen.dart';
 import 'package:flutter_training/ui/c3_salad_home/salad_home_page.dart';
 import 'package:flutter_training/ui/c4_assets_practice/c4_home_page.dart';
 import 'package:flutter_training/ui/c5_login_logic/screen_1.dart';
@@ -45,7 +46,7 @@ class MainHomePage extends StatelessWidget {
           ElevatedButton(
             onPressed: () => Navigator.pushNamed(
               context,
-              "/screen1",
+              RouteScreen.screen1,
             ),
             child: const Text("C5 Assignment"),
           ),
@@ -55,7 +56,7 @@ class MainHomePage extends StatelessWidget {
           ElevatedButton(
             onPressed: () => Navigator.pushNamed(
               context,
-              "/movieApp",
+              RouteScreen.movieApp,
             ),
             child: const Text("Movie App"),
           ),
